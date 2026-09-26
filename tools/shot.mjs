@@ -38,8 +38,10 @@ async function runJob(browser, job) {
   page.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning' || job.verbose) logs.push(`[${m.type()}] ${m.text()}`); });
   page.on('pageerror', (e) => logs.push(`[pageerror] ${e.message}\n${e.stack || ''}`));
   if (job.init) await page.addInitScript(job.init);
-  // dev.html carries the test scenes and automation hooks; set "page": "index.html" to test the real build
-  const url = pathToFileURL(path.join(root, job.page || 'dev.html')).href + (job.q ? '?' + job.q : '');
+  // dev.html carries the test scenes and automation hooks; set "page": "index.html" to test the real build,
+  // or a full https:// address to test a deployed copy (e.g. GitHub Pages)
+  const base = /^https?:\/\//.test(job.page || '') ? job.page : pathToFileURL(path.join(root, job.page || 'dev.html')).href;
+  const url = base + (job.q ? '?' + job.q : '');
   await page.goto(url);
   await page.waitForFunction(() => window.RS_READY || window.RS_ERROR, null, { timeout: 60000 }).catch(() => logs.push('[timeout] RS_READY'));
   if (job.waitFor) await page.waitForFunction(job.waitFor, null, { timeout: job.waitForTimeout || 90000 }).catch(() => logs.push('[timeout] ' + job.waitFor));

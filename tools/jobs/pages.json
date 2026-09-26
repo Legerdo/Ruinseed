@@ -1,0 +1,20 @@
+[
+  { "name": "pages-full-flow", "page": "https://legerdo.github.io/Ruinseed/", "w": 1280, "h": 720, "wait": 800,
+    "actions": [
+      { "type": "eval", "code": "JSON.stringify({href: location.href, scene: RS.App.sceneName, W: RS.App.W, H: RS.App.H, fontGlyphs: Object.keys(RS.FONT_DATA).length, debug: typeof RS.Debug})" },
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 400 },
+      { "type": "eval", "code": "JSON.stringify({audioUnlocked: RS.Audio.unlocked, track: RS.Audio.curName})" },
+      { "type": "shot", "name": "pages_title.png" },
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 500 },
+      { "type": "press", "key": "Tab" }, { "type": "wait", "ms": 100 },
+      { "type": "press", "key": "Enter" },
+      { "type": "waitFor", "code": "RS.App.sceneName === 'play' && RS.currentGame", "timeout": 60000 },
+      { "type": "wait", "ms": 1500 },
+      { "type": "eval", "code": "(()=>{const p=RS.currentGame.player; window._p0={x:p.x,y:p.y}; return 'playing seed '+RS.currentGame.seed;})()" },
+      { "type": "key", "key": "KeyD", "ms": 900 },
+      { "type": "eval", "code": "(()=>{const p=RS.currentGame.player; return 'moved '+Math.round(Math.hypot(p.x-_p0.x,p.y-_p0.y))+'px';})()" },
+      { "type": "shot", "name": "pages_play.png" },
+      { "type": "eval", "code": "(()=>{RS.currentGame.saveRun(); return new Promise(r=>setTimeout(()=>r('saved run: '+!!JSON.parse(localStorage.getItem('ruinseed.save.v1')).run),700));})()" }
+    ]
+  }
+]
