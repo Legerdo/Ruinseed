@@ -61,8 +61,9 @@
 ## 폴더 구조
 
 ```text
-index.html          게임 (배포용)
+index.html          게임 (배포용, GitHub Pages가 이 파일을 엽니다)
 dev.html            개발용 빌드: 테스트 장면과 자동화 훅 포함
+favicon.png         탭 아이콘 (게임 속 잉걸의 인장 스프라이트)
 css/                페이지 스타일
 fonts/              갈무리 글꼴 라이선스 (SIL OFL 1.1)
 js/main.js          시작점: 정수 배율 캔버스, 고정 스텝 루프, 장면 관리
