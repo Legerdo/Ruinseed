@@ -1,0 +1,7 @@
+[
+  { "name": "audit", "q": "scene=title", "w": 800, "h": 500, "wait": 300,
+    "actions": [
+      { "type": "eval", "code": "(()=>{ const strs=[]; const walk=(o,p)=>{ if(typeof o==='string') strs.push([p,o]); else if(Array.isArray(o)) o.forEach((v,i)=>walk(v,p+'['+i+']')); else if(o&&typeof o==='object') for(const k of Object.keys(o)) walk(o[k],p+'.'+k); }; walk(RS.T,'T'); walk(RS.BIOME_NAMES,'NAMES'); for(const k of Object.keys(RS.BIOMES)) strs.push(['BIOMES.'+k, RS.BIOMES[k].label]); const F=RS.Text.fonts; const missing={}; for(const [p,s] of strs){ for(const ch of s){ const cp=ch.codePointAt(0); if(cp===10) continue; for(const fn of ['body','bold','small']){ if(!F[fn].map.has(cp)) { missing[ch]=(missing[ch]||[]); if(missing[ch].length<3) missing[ch].push(fn+':'+p);} } if(!F.large.map.has(cp) && !F.bold.map.has(cp)) { missing[ch]=(missing[ch]||[]); missing[ch].push('large:'+p);} } } const latin=strs.filter(([p,s])=>/[A-Za-z]/.test(s)).map(([p,s])=>p+' = '+s); return JSON.stringify({count: strs.length, missing, latin}, null, 1); })()" }
+    ]
+  }
+]

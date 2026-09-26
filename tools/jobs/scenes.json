@@ -1,0 +1,26 @@
+[
+  { "name": "fv-play", "q": "scene=play&seed=2026", "w": 1280, "h": 720, "waitFor": "window.RST && window.RST.ready()", "wait": 1200,
+    "actions": [
+      { "type": "eval", "code": "RS.App.W+'x'+RS.App.H+' @'+RS.App.scale" },
+      { "type": "shot", "name": "fv_start.png" },
+      { "type": "eval", "code": "(()=>{const g=RST.g(); g.interact(g.keeper); return 't';})()" }, { "type": "wait", "ms": 1500 },
+      { "type": "shot", "name": "fv_dialog.png" },
+      { "type": "eval", "code": "(()=>{RS.App.modals.length=0; const g=RST.g(); g.dialog=null; const r=g.world.regions.find(r=>r.biome==='forest')||g.world.regions[1]; RST.tp(r.hub.x, r.hub.y); return r.name;})()" }, { "type": "wait", "ms": 1200 },
+      { "type": "shot", "name": "fv_forest.png" },
+      { "type": "eval", "code": "(()=>{const g=RST.g(); g.enterDungeon(0); return 'd0';})()" }, { "type": "wait", "ms": 2200 },
+      { "type": "shot", "name": "fv_dungeon.png" },
+      { "type": "key", "key": "KeyM", "ms": 60 }, { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "fv_dungeon_map.png" },
+      { "type": "eval", "code": "(()=>{RS.App.modals.length=0; const g=RST.g(); g.godMode=true; RS.Cheats.toBoss(g); return 'boss';})()" }, { "type": "wait", "ms": 1200 },
+      { "type": "key", "key": "KeyW", "ms": 1800 }, { "type": "wait", "ms": 3600 },
+      { "type": "shot", "name": "fv_boss.png" }
+    ]
+  },
+  { "name": "fv-960", "q": "scene=title", "w": 960, "h": 540, "wait": 300,
+    "actions": [
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 300 },
+      { "type": "eval", "code": "RS.App.W+'x'+RS.App.H+' @'+RS.App.scale" },
+      { "type": "shot", "name": "fv960_title.png" }
+    ]
+  }
+]

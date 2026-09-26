@@ -1,0 +1,8 @@
+[
+  { "q": "scene=worldview&seed=1&at=d0", "w": 960, "h": 540, "out": "view_d0.png", "wait": 300, "waitFor": "window.VIEW_DONE" },
+  { "q": "scene=worldview&seed=1&at=d1", "w": 960, "h": 540, "out": "view_d1.png", "wait": 300, "waitFor": "window.VIEW_DONE" },
+  { "q": "scene=worldview&seed=1&at=d2", "w": 960, "h": 540, "out": "view_d2.png", "wait": 300, "waitFor": "window.VIEW_DONE" },
+  { "q": "scene=worldview&seed=1&at=lair", "w": 960, "h": 540, "out": "view_lair.png", "wait": 300, "waitFor": "window.VIEW_DONE" },
+  { "q": "scene=worldview&seed=1&at=r2", "w": 960, "h": 540, "out": "view_r2.png", "wait": 300, "waitFor": "window.VIEW_DONE" },
+  { "q": "scene=worldview&seed=1&at=r5", "w": 960, "h": 540, "out": "view_r5.png", "wait": 300, "waitFor": "window.VIEW_DONE" }
+]

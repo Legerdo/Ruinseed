@@ -1,0 +1,16 @@
+{
+  "name": "ruinseed-devtools",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Development-only tooling for Ruinseed (font packing, headless screenshots, automated checks). The game itself has no runtime dependencies.",
+  "type": "module",
+  "scripts": {
+    "fetch-font": "node fetch-font.mjs",
+    "font": "node build-font.mjs",
+    "shot": "node shot.mjs",
+    "playthrough": "node shot.mjs jobs/playthrough.json"
+  },
+  "devDependencies": {
+    "playwright-core": "1.63.0"
+  }
+}

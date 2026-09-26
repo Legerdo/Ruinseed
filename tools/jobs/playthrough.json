@@ -1,0 +1,281 @@
+[
+ {
+  "name": "auto-1",
+  "q": "scene=play&seed=1&speed=8",
+  "w": 960,
+  "h": 540,
+  "waitFor": "window.RST && window.RST.ready()",
+  "wait": 300,
+  "actions": [
+   {
+    "type": "eval",
+    "code": "RS.Auto.start(); 'auto'"
+   },
+   {
+    "type": "waitFor",
+    "code": "RS.App.sceneName==='victory'",
+    "timeout": 240000
+   },
+   {
+    "type": "wait",
+    "ms": 1500
+   },
+   {
+    "type": "shot",
+    "name": "final_1.png"
+   },
+   {
+    "type": "eval",
+    "code": "JSON.stringify({scene: RS.App.sceneName, time: Math.round(RS.currentGame.runTime), log: RS.Auto.log.slice(-4)})"
+   }
+  ]
+ },
+ {
+  "name": "auto-2",
+  "q": "scene=play&seed=2&speed=8",
+  "w": 960,
+  "h": 540,
+  "waitFor": "window.RST && window.RST.ready()",
+  "wait": 300,
+  "actions": [
+   {
+    "type": "eval",
+    "code": "RS.Auto.start(); 'auto'"
+   },
+   {
+    "type": "waitFor",
+    "code": "RS.App.sceneName==='victory'",
+    "timeout": 240000
+   },
+   {
+    "type": "wait",
+    "ms": 1500
+   },
+   {
+    "type": "shot",
+    "name": "final_2.png"
+   },
+   {
+    "type": "eval",
+    "code": "JSON.stringify({scene: RS.App.sceneName, time: Math.round(RS.currentGame.runTime), log: RS.Auto.log.slice(-4)})"
+   }
+  ]
+ },
+ {
+  "name": "auto-3",
+  "q": "scene=play&seed=3&speed=8",
+  "w": 960,
+  "h": 540,
+  "waitFor": "window.RST && window.RST.ready()",
+  "wait": 300,
+  "actions": [
+   {
+    "type": "eval",
+    "code": "RS.Auto.start(); 'auto'"
+   },
+   {
+    "type": "waitFor",
+    "code": "RS.App.sceneName==='victory'",
+    "timeout": 240000
+   },
+   {
+    "type": "wait",
+    "ms": 1500
+   },
+   {
+    "type": "shot",
+    "name": "final_3.png"
+   },
+   {
+    "type": "eval",
+    "code": "JSON.stringify({scene: RS.App.sceneName, time: Math.round(RS.currentGame.runTime), log: RS.Auto.log.slice(-4)})"
+   }
+  ]
+ },
+ {
+  "name": "auto-7",
+  "q": "scene=play&seed=7&speed=8",
+  "w": 960,
+  "h": 540,
+  "waitFor": "window.RST && window.RST.ready()",
+  "wait": 300,
+  "actions": [
+   {
+    "type": "eval",
+    "code": "RS.Auto.start(); 'auto'"
+   },
+   {
+    "type": "waitFor",
+    "code": "RS.App.sceneName==='victory'",
+    "timeout": 240000
+   },
+   {
+    "type": "wait",
+    "ms": 1500
+   },
+   {
+    "type": "shot",
+    "name": "final_7.png"
+   },
+   {
+    "type": "eval",
+    "code": "JSON.stringify({scene: RS.App.sceneName, time: Math.round(RS.currentGame.runTime), log: RS.Auto.log.slice(-4)})"
+   }
+  ]
+ },
+ {
+  "name": "auto-42",
+  "q": "scene=play&seed=42&speed=8",
+  "w": 960,
+  "h": 540,
+  "waitFor": "window.RST && window.RST.ready()",
+  "wait": 300,
+  "actions": [
+   {
+    "type": "eval",
+    "code": "RS.Auto.start(); 'auto'"
+   },
+   {
+    "type": "waitFor",
+    "code": "RS.App.sceneName==='victory'",
+    "timeout": 240000
+   },
+   {
+    "type": "wait",
+    "ms": 1500
+   },
+   {
+    "type": "shot",
+    "name": "final_42.png"
+   },
+   {
+    "type": "eval",
+    "code": "JSON.stringify({scene: RS.App.sceneName, time: Math.round(RS.currentGame.runTime), log: RS.Auto.log.slice(-4)})"
+   }
+  ]
+ },
+ {
+  "name": "auto-777",
+  "q": "scene=play&seed=777&speed=8",
+  "w": 960,
+  "h": 540,
+  "waitFor": "window.RST && window.RST.ready()",
+  "wait": 300,
+  "actions": [
+   {
+    "type": "eval",
+    "code": "RS.Auto.start(); 'auto'"
+   },
+   {
+    "type": "waitFor",
+    "code": "RS.App.sceneName==='victory'",
+    "timeout": 240000
+   },
+   {
+    "type": "wait",
+    "ms": 1500
+   },
+   {
+    "type": "shot",
+    "name": "final_777.png"
+   },
+   {
+    "type": "eval",
+    "code": "JSON.stringify({scene: RS.App.sceneName, time: Math.round(RS.currentGame.runTime), log: RS.Auto.log.slice(-4)})"
+   }
+  ]
+ },
+ {
+  "name": "auto-123456",
+  "q": "scene=play&seed=123456&speed=8",
+  "w": 960,
+  "h": 540,
+  "waitFor": "window.RST && window.RST.ready()",
+  "wait": 300,
+  "actions": [
+   {
+    "type": "eval",
+    "code": "RS.Auto.start(); 'auto'"
+   },
+   {
+    "type": "waitFor",
+    "code": "RS.App.sceneName==='victory'",
+    "timeout": 240000
+   },
+   {
+    "type": "wait",
+    "ms": 1500
+   },
+   {
+    "type": "shot",
+    "name": "final_123456.png"
+   },
+   {
+    "type": "eval",
+    "code": "JSON.stringify({scene: RS.App.sceneName, time: Math.round(RS.currentGame.runTime), log: RS.Auto.log.slice(-4)})"
+   }
+  ]
+ },
+ {
+  "name": "auto-2026",
+  "q": "scene=play&seed=2026&speed=8",
+  "w": 960,
+  "h": 540,
+  "waitFor": "window.RST && window.RST.ready()",
+  "wait": 300,
+  "actions": [
+   {
+    "type": "eval",
+    "code": "RS.Auto.start(); 'auto'"
+   },
+   {
+    "type": "waitFor",
+    "code": "RS.App.sceneName==='victory'",
+    "timeout": 240000
+   },
+   {
+    "type": "wait",
+    "ms": 1500
+   },
+   {
+    "type": "shot",
+    "name": "final_2026.png"
+   },
+   {
+    "type": "eval",
+    "code": "JSON.stringify({scene: RS.App.sceneName, time: Math.round(RS.currentGame.runTime), log: RS.Auto.log.slice(-4)})"
+   }
+  ]
+ },
+ {
+  "name": "auto-90210",
+  "q": "scene=play&seed=90210&speed=8",
+  "w": 960,
+  "h": 540,
+  "waitFor": "window.RST && window.RST.ready()",
+  "wait": 300,
+  "actions": [
+   {
+    "type": "eval",
+    "code": "RS.Auto.start(); 'auto'"
+   },
+   {
+    "type": "waitFor",
+    "code": "RS.App.sceneName==='victory'",
+    "timeout": 240000
+   },
+   {
+    "type": "wait",
+    "ms": 1500
+   },
+   {
+    "type": "shot",
+    "name": "final_90210.png"
+   },
+   {
+    "type": "eval",
+    "code": "JSON.stringify({scene: RS.App.sceneName, time: Math.round(RS.currentGame.runTime), log: RS.Auto.log.slice(-4)})"
+   }
+  ]
+ }
+]

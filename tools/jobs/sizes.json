@@ -1,0 +1,83 @@
+[
+  { "name": "s800", "q": "scene=title", "w": 800, "h": 500, "wait": 300,
+    "actions": [
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 300 },
+      { "type": "eval", "code": "RS.App.W+'x'+RS.App.H+' @'+RS.App.scale" },
+      { "type": "shot", "name": "s800_title.png" },
+      { "type": "eval", "code": "RS.Save.data.currency=75; RS.App.setScene('camp',{seed:31337}); 'c'" }, { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "s800_camp.png" },
+      { "type": "eval", "code": "RS.App.pushModal(new RS.UI.SettingsModal(null)); 's'" }, { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "s800_settings.png" },
+      { "type": "eval", "code": "RS.App.modals.length=0; RS.App.pushModal(new RS.UI.ControlsModal()); 'c'" }, { "type": "wait", "ms": 200 },
+      { "type": "shot", "name": "s800_controls.png" }
+    ]
+  },
+  { "name": "s640", "q": "scene=title", "w": 640, "h": 360, "wait": 300,
+    "actions": [
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 300 },
+      { "type": "eval", "code": "RS.App.W+'x'+RS.App.H+' @'+RS.App.scale" },
+      { "type": "shot", "name": "s640_title.png" },
+      { "type": "eval", "code": "RS.Save.data.currency=75; RS.App.setScene('camp',{seed:31337}); 'c'" }, { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "s640_camp.png" },
+      { "type": "press", "key": "ArrowDown" }, { "type": "wait", "ms": 60 },
+      { "type": "press", "key": "ArrowDown" }, { "type": "wait", "ms": 60 },
+      { "type": "press", "key": "ArrowDown" }, { "type": "wait", "ms": 60 },
+      { "type": "press", "key": "ArrowDown" }, { "type": "wait", "ms": 60 },
+      { "type": "press", "key": "ArrowDown" }, { "type": "wait", "ms": 200 },
+      { "type": "shot", "name": "s640_camp2.png" },
+      { "type": "press", "key": "ArrowDown" }, { "type": "wait", "ms": 60 },
+      { "type": "press", "key": "ArrowDown" }, { "type": "wait", "ms": 60 },
+      { "type": "press", "key": "ArrowRight" }, { "type": "wait", "ms": 200 },
+      { "type": "eval", "code": "RS.Scenes.camp.focus+' shop='+RS.Scenes.camp.shop.sel+' dep='+RS.Scenes.camp.depRow.sel" },
+      { "type": "shot", "name": "s640_camp3.png" },
+      { "type": "eval", "code": "RS.App.pushModal(new RS.UI.SettingsModal(null)); 's'" }, { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "s640_settings.png" },
+      { "type": "eval", "code": "(()=>{const m=RS.App.topModal().menu; m.sel=11; return 'sel';})()" }, { "type": "wait", "ms": 200 },
+      { "type": "shot", "name": "s640_settings2.png" },
+      { "type": "eval", "code": "RS.App.modals.length=0; RS.App.pushModal(new RS.UI.ControlsModal()); 'c'" }, { "type": "wait", "ms": 200 },
+      { "type": "shot", "name": "s640_controls.png" }
+    ]
+  },
+  { "name": "s640-play", "q": "scene=play&seed=5", "w": 640, "h": 360, "waitFor": "window.RST && window.RST.ready()", "wait": 500,
+    "actions": [
+      { "type": "shot", "name": "s640_play.png" },
+      { "type": "eval", "code": "(()=>{const g=RST.g(); g.interact(g.keeper); return 't';})()" }, { "type": "wait", "ms": 1500 },
+      { "type": "shot", "name": "s640_dialog.png" },
+      { "type": "eval", "code": "(()=>{RS.App.modals.length=0; RST.g().dialog=null; RS.App.pushModal(new RS.UI.PauseModal(RST.g())); return 'p';})()" },
+      { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "s640_pause.png" },
+      { "type": "eval", "code": "(()=>{RS.App.modals.length=0; RS.App.pushModal(new RS.UI.MapModal(RST.g())); return 'm';})()" },
+      { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "s640_map.png" }
+    ]
+  },
+  { "name": "s1366-play", "q": "scene=play&seed=5", "w": 1366, "h": 768, "waitFor": "window.RST && window.RST.ready()", "wait": 500,
+    "actions": [
+      { "type": "eval", "code": "RS.App.W+'x'+RS.App.H+' @'+RS.App.scale" },
+      { "type": "eval", "code": "(()=>{RST.g().godMode=true; return 'god';})()" }, { "type": "wait", "ms": 200 },
+      { "type": "shot", "name": "s1366_play.png" },
+      { "type": "eval", "code": "(()=>{const g=RST.g(); g.run.talked=true; RS.App.pushModal(new RS.UI.MapModal(g)); return 'm';})()" },
+      { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "s1366_map.png" }
+    ]
+  },
+  { "name": "s1920", "q": "scene=play&seed=5", "w": 1920, "h": 1080, "waitFor": "window.RST && window.RST.ready()", "wait": 500,
+    "actions": [
+      { "type": "eval", "code": "RS.App.W+'x'+RS.App.H+' @'+RS.App.scale" },
+      { "type": "shot", "name": "s1920_play.png" },
+      { "type": "key", "key": "KeyM", "ms": 60 }, { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "s1920_map.png" },
+      { "type": "eval", "code": "RS.App.modals.length=0; RS.Save.data.currency=75; RS.App.setScene('camp',{seed:31337}); 'c'" }, { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "s1920_camp.png" }
+    ]
+  },
+  { "name": "laptop-dpr", "q": "scene=title", "w": 1280, "h": 657, "dpr": 1.5, "wait": 400,
+    "actions": [
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 300 },
+      { "type": "eval", "code": "RS.App.W+'x'+RS.App.H+' @'+RS.App.scale" },
+      { "type": "shot", "name": "s1280dpr_title.png" },
+      { "type": "eval", "code": "RS.Save.data.currency=75; RS.App.setScene('camp',{seed:31337}); 'c'" }, { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "s1280dpr_camp.png" }
+    ]
+  }
+]

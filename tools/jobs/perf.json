@@ -1,0 +1,25 @@
+[
+  { "name": "perf", "q": "scene=play&seed=42", "w": 1920, "h": 1080, "waitFor": "window.RST && window.RST.ready()", "wait": 800,
+    "actions": [
+      { "type": "eval", "code": "(()=>{const A=RS.App; const ou=A.update.bind(A), or=A.render.bind(A); window._pf={u:[],r:[],f:[],last:0}; A.update=function(dt){const t=performance.now(); ou(dt); _pf.u.push(performance.now()-t);}; A.render=function(){const t=performance.now(); or(); const n=performance.now(); _pf.r.push(n-t); if(_pf.last) _pf.f.push(n-_pf.last); _pf.last=n;}; window._stat=(a)=>{const s=a.slice().sort((x,y)=>x-y); const avg=s.reduce((p,c)=>p+c,0)/Math.max(1,s.length); return {n:s.length, avg:+avg.toFixed(2), p95:+(s[Math.floor(s.length*0.95)]||0).toFixed(2), max:+(s[s.length-1]||0).toFixed(2)};}; window._reset=()=>{_pf.u=[];_pf.r=[];_pf.f=[];_pf.last=0;}; RST.g().godMode=true; RST.g().run.talked=true; return 'wrapped';})()" },
+      { "type": "eval", "code": "(()=>{_reset(); RS.Input.override={x:1,y:0}; setTimeout(()=>RS.Input.override={x:0,y:1},2000); setTimeout(()=>RS.Input.override={x:-1,y:0},4000); setTimeout(()=>RS.Input.override={x:0,y:-1},6000); setTimeout(()=>RS.Input.override=null,8000); return 'walk';})()" },
+      { "type": "wait", "ms": 8200 },
+      { "type": "eval", "code": "JSON.stringify({where:'overworld', update:_stat(_pf.u), render:_stat(_pf.r), frame:_stat(_pf.f), ents:RST.g().level.entities.length})" },
+      { "type": "shot", "name": "perf_overworld.png" },
+      { "type": "eval", "code": "(()=>{const g=RST.g(); const i=g.world.dungeons.findIndex(d=>d.theme==='tide'); g.enterDungeon(i); return 'dungeon '+i;})()" },
+      { "type": "wait", "ms": 1500 },
+      { "type": "eval", "code": "(()=>{_reset(); RS.Input.override={x:0,y:-1}; setTimeout(()=>RS.Input.override={x:1,y:0},1500); setTimeout(()=>RS.Input.override=null,3500); return 'walk';})()" },
+      { "type": "wait", "ms": 3800 },
+      { "type": "eval", "code": "JSON.stringify({where:'dungeon', update:_stat(_pf.u), render:_stat(_pf.r), frame:_stat(_pf.f), ents:RST.g().level.entities.length})" },
+      { "type": "shot", "name": "perf_dungeon.png" },
+      { "type": "eval", "code": "(()=>{const g=RST.g(); RS.Cheats.toBoss(g); return 'boss';})()" },
+      { "type": "wait", "ms": 1200 },
+      { "type": "eval", "code": "(()=>{RS.Input.override={x:0,y:-1}; setTimeout(()=>RS.Input.override=null,1800); return 'walk';})()" },
+      { "type": "wait", "ms": 4500 },
+      { "type": "eval", "code": "(()=>{_reset(); window.BOT=setInterval(()=>{const g=RST.g(); if(!g||!g.boss||g.boss.dead) return; const b=g.boss; const p=g.player; if(!b.hittable){ p.x+= (Math.random()-0.5)*3; return;} if(p.state==='attack') return; p.x=b.x+(Math.random()<0.5?-6:6); p.y=b.y+20; p.dir='up'; p.buffer.attack=0.14;}, 60); return 'fight';})()" },
+      { "type": "wait", "ms": 6000 },
+      { "type": "eval", "code": "JSON.stringify({where:'boss', update:_stat(_pf.u), render:_stat(_pf.r), frame:_stat(_pf.f), ents:RST.g().level.entities.length, hp:RST.g().boss && RST.g().boss.hp})" },
+      { "type": "shot", "name": "perf_boss.png" }
+    ]
+  }
+]

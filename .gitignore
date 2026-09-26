@@ -1,0 +1,12 @@
+# 개발 도구 의존성
+tools/node_modules/
+
+# 개발 도구 산출물: 헤드리스 스크린샷, 내려받은 갈무리 글꼴 원본(npm run fetch-font 로 다시 받을 수 있음)
+tools/shots/
+tools/tmp/
+
+# 운영체제 · 편집기
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

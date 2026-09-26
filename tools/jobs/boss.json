@@ -1,0 +1,51 @@
+[
+  { "name": "boss-fight", "q": "scene=play&seed=1", "w": 960, "h": 540, "waitFor": "window.RST && window.RST.ready()", "wait": 300,
+    "actions": [
+      { "type": "eval", "code": "(()=>{const g=RST.g(); g.godMode=true; RS.Cheats.toBoss(g); return 'ok';})()" },
+      { "type": "wait", "ms": 1300 },
+      { "type": "key", "key": "KeyW", "ms": 2600 },
+      { "type": "wait", "ms": 700 },
+      { "type": "shot", "name": "boss_intro.png" },
+      { "type": "wait", "ms": 2200 },
+      { "type": "shot", "name": "boss_idle.png" },
+      { "type": "eval", "code": "(()=>{ window.BOT=setInterval(()=>{const g=RST.g(); if(!g||!g.boss||g.boss.dead) return; const b=g.boss; if(!b.hittable) return; const p=g.player; if(p.state==='attack') return; p.x=b.x+(Math.random()<0.5?-6:6); p.y=b.y+20; p.dir='up'; p.buffer.attack=0.14;}, 60); return 'bot'; })()" },
+      { "type": "wait", "ms": 5000 },
+      { "type": "shot", "name": "boss_mid.png" },
+      { "type": "eval", "code": "(()=>{const b=RST.g().boss; return JSON.stringify({hp:b.hp, st:b.state, ph:b.phase});})()" },
+      { "type": "waitFor", "code": "(()=>{const g=RST.g(); return !g || !g.boss || g.boss.hp < 50;})()", "timeout": 60000 },
+      { "type": "shot", "name": "boss_phase2.png" },
+      { "type": "eval", "code": "(()=>{const b=RST.g().boss; return JSON.stringify({hp:b.hp, st:b.state, ph:b.phase});})()" },
+      { "type": "waitFor", "code": "(()=>{const g=RST.g(); return !g || !g.boss || g.boss.state==='dying' || g.boss.dead;})()", "timeout": 90000 },
+      { "type": "wait", "ms": 1200 },
+      { "type": "shot", "name": "boss_dying.png" },
+      { "type": "waitFor", "code": "RS.App.sceneName==='victory'", "timeout": 20000 },
+      { "type": "wait", "ms": 1500 },
+      { "type": "shot", "name": "victory.png" },
+      { "type": "eval", "code": "JSON.stringify({scene: RS.App.sceneName, wins: RS.Save.data.stats.wins, best: RS.Save.data.best})" }
+    ]
+  },
+  { "name": "menus", "q": "scene=title", "w": 960, "h": 540, "wait": 500,
+    "actions": [
+      { "type": "shot", "name": "title_press.png" },
+      { "type": "press", "key": "Enter" },
+      { "type": "wait", "ms": 400 },
+      { "type": "shot", "name": "title_menu.png" },
+      { "type": "eval", "code": "RS.Save.data.currency=260; RS.App.setScene('camp',{seed:424242}); 'camp'" },
+      { "type": "wait", "ms": 400 },
+      { "type": "shot", "name": "camp.png" },
+      { "type": "press", "key": "Enter" },
+      { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "camp_bought.png" }
+    ]
+  },
+  { "name": "defeat", "q": "scene=play&seed=2", "w": 960, "h": 540, "waitFor": "window.RST && window.RST.ready()", "wait": 300,
+    "actions": [
+      { "type": "eval", "code": "(()=>{const g=RST.g(); g.player.inv=0; g.player.hp=1; g.damagePlayer(2, g.player.x+10, g.player.y); return 'dmg';})()" },
+      { "type": "wait", "ms": 1000 },
+      { "type": "shot", "name": "death_anim.png" },
+      { "type": "waitFor", "code": "RS.App.sceneName==='defeat'", "timeout": 10000 },
+      { "type": "wait", "ms": 1200 },
+      { "type": "shot", "name": "defeat.png" }
+    ]
+  }
+]

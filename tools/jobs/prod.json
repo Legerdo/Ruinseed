@@ -1,0 +1,34 @@
+[
+  { "name": "prod-full-flow", "page": "index.html", "w": 1280, "h": 720, "wait": 400, "verbose": false,
+    "actions": [
+      { "type": "eval", "code": "JSON.stringify({scene: RS.App.sceneName, debug: typeof RS.Debug, rst: typeof window.RST, auto: typeof RS.Auto, speed: RS.App.speed, scenes: Object.keys(RS.Scenes)})" },
+      { "type": "shot", "name": "prod_title_press.png" },
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "prod_title_menu.png" },
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 400 },
+      { "type": "eval", "code": "RS.App.sceneName" },
+      { "type": "shot", "name": "prod_camp.png" },
+      { "type": "press", "key": "Tab" }, { "type": "wait", "ms": 100 },
+      { "type": "press", "key": "Enter" },
+      { "type": "waitFor", "code": "RS.App.sceneName === 'play' && RS.currentGame", "timeout": 60000 },
+      { "type": "wait", "ms": 1200 },
+      { "type": "eval", "code": "(()=>{const p=RS.currentGame.player; window._p0={x:p.x,y:p.y}; return 'seed '+RS.currentGame.seed+' at '+Math.round(p.x)+','+Math.round(p.y);})()" },
+      { "type": "key", "key": "KeyS", "ms": 700 },
+      { "type": "key", "key": "ArrowRight", "ms": 500 },
+      { "type": "key", "key": "KeyK", "ms": 60 },
+      { "type": "wait", "ms": 300 },
+      { "type": "key", "key": "KeyJ", "ms": 60 },
+      { "type": "wait", "ms": 200 },
+      { "type": "eval", "code": "(()=>{const p=RS.currentGame.player; return 'moved '+Math.round(Math.hypot(p.x-_p0.x,p.y-_p0.y))+'px state '+p.state;})()" },
+      { "type": "shot", "name": "prod_play.png" },
+      { "type": "press", "key": "Escape" }, { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "prod_pause.png" },
+      { "type": "eval", "code": "RS.App.modals.map(m=>m.constructor.name).join(',')" }
+    ]
+  },
+  { "name": "prod-ignores-dev-params", "page": "index.html", "q": "scene=play&seed=5&speed=12", "w": 960, "h": 540, "wait": 600,
+    "actions": [
+      { "type": "eval", "code": "JSON.stringify({scene: RS.App.sceneName, speed: RS.App.speed})" }
+    ]
+  }
+]

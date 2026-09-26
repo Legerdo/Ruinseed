@@ -1,0 +1,52 @@
+[
+  { "name": "readme-title", "q": "scene=title", "w": 1280, "h": 720, "wait": 400,
+    "actions": [
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 600 },
+      { "type": "shot", "name": "readme_title.png" }
+    ]
+  },
+  { "name": "readme-camp", "q": "scene=title", "w": 1280, "h": 720, "wait": 300,
+    "actions": [
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 200 },
+      { "type": "eval", "code": "(()=>{const s=RS.Save.data; s.currency=185; s.upgrades.hp=1; s.upgrades.speed=1; RS.App.setScene('camp',{seed:2026}); return 'camp';})()" },
+      { "type": "wait", "ms": 700 },
+      { "type": "shot", "name": "readme_camp.png" }
+    ]
+  },
+  { "name": "readme-field", "q": "scene=play&seed=2026", "w": 1280, "h": 720, "waitFor": "window.RST && window.RST.ready()", "wait": 800,
+    "actions": [
+      { "type": "eval", "code": "(()=>{const g=RST.g(); g.player.hurt=()=>false; g.run.talked=true; RS.Save.data.settings.hints=false; g.hint=null; const r=g.world.regions.find(r=>r.biome==='forest')||g.world.regions[1]; RST.tp(r.hub.x, r.hub.y+1); window._hide=setInterval(()=>{const g=RST.g(); if(g){g.banner=null; g.hint=null;}},16); return r.name;})()" },
+      { "type": "key", "key": "KeyA", "ms": 400 },
+      { "type": "wait", "ms": 900 },
+      { "type": "shot", "name": "readme_field.png" }
+    ]
+  },
+  { "name": "readme-dungeon", "q": "scene=play&seed=2026", "w": 1280, "h": 720, "waitFor": "window.RST && window.RST.ready()", "wait": 600,
+    "actions": [
+      { "type": "eval", "code": "(()=>{const g=RST.g(); g.player.hurt=()=>false; g.run.talked=true; RS.Save.data.settings.hints=false; const i=g.world.dungeons.findIndex(d=>d.theme==='tide'); g.enterDungeon(i); window._hide=setInterval(()=>{const g=RST.g(); if(g){g.banner=null; g.hint=null;}},16); return 'tide '+i;})()" },
+      { "type": "wait", "ms": 1800 },
+      { "type": "eval", "code": "(()=>{const g=RST.g(); const d=g.dungeonData[+g.levelName.slice(7)]; const a=d.activators[0]; RST.tp(Math.floor(a.x/16)+1, Math.floor(a.y/16)+2); g.player.dir='up'; return d.theme;})()" },
+      { "type": "wait", "ms": 1400 },
+      { "type": "shot", "name": "readme_dungeon.png" }
+    ]
+  },
+  { "name": "readme-boss", "q": "scene=play&seed=2026", "w": 1280, "h": 720, "waitFor": "window.RST && window.RST.ready()", "wait": 400,
+    "actions": [
+      { "type": "eval", "code": "(()=>{const g=RST.g(); RS.Save.data.settings.hints=false; RS.Cheats.toBoss(g); return 'boss';})()" },
+      { "type": "wait", "ms": 1300 },
+      { "type": "eval", "code": "(()=>{const g=RST.g(); g.player.hurt=()=>false; return 'nohurt';})()" },
+      { "type": "key", "key": "KeyW", "ms": 1800 },
+      { "type": "wait", "ms": 4500 },
+      { "type": "eval", "code": "(()=>{const g=RST.g(); g.toasts.length=0; window._hide=setInterval(()=>{const g=RST.g(); if(g){g.toasts.length=0;}},16); return 'watch';})()" },
+      { "type": "wait", "ms": 700 }, { "type": "shot", "name": "readme_boss1.png" },
+      { "type": "wait", "ms": 800 }, { "type": "shot", "name": "readme_boss2.png" },
+      { "type": "wait", "ms": 800 }, { "type": "shot", "name": "readme_boss3.png" },
+      { "type": "wait", "ms": 800 }, { "type": "shot", "name": "readme_boss4.png" },
+      { "type": "wait", "ms": 800 }, { "type": "shot", "name": "readme_boss5.png" },
+      { "type": "wait", "ms": 800 }, { "type": "shot", "name": "readme_boss6.png" }
+    ]
+  },
+  { "name": "readme-seeds", "q": "scene=worldpreview&seeds=1,42,777,2026&scale=1", "w": 1280, "h": 720, "waitFor": "window.PREVIEW_DONE", "wait": 400,
+    "actions": [ { "type": "shot", "name": "readme_seeds.png" } ]
+  }
+]

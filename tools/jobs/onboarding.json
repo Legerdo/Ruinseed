@@ -1,0 +1,29 @@
+[
+  { "name": "play-start", "q": "scene=play&seed=1", "w": 960, "h": 540, "waitFor": "window.RST && window.RST.ready()", "wait": 600,
+    "actions": [
+      { "type": "key", "key": "KeyD", "ms": 600 },
+      { "type": "eval", "code": "JSON.stringify(RST.info())" },
+      { "type": "eval", "code": "(()=>{const g=RST.g(); const k=g.world.campNpc; RST.tp(k.tx, k.ty+1); g.player.dir='up'; return 'tp';})()" },
+      { "type": "wait", "ms": 200 },
+      { "type": "shot", "name": "play_1_prompt.png" },
+      { "type": "key", "key": "KeyE", "ms": 60 },
+      { "type": "wait", "ms": 1200 },
+      { "type": "shot", "name": "play_2_dialog.png" },
+      { "type": "key", "key": "KeyE", "ms": 60 }, { "type": "wait", "ms": 100 },
+      { "type": "key", "key": "KeyE", "ms": 60 }, { "type": "wait", "ms": 100 },
+      { "type": "key", "key": "KeyE", "ms": 60 }, { "type": "wait", "ms": 1500 },
+      { "type": "shot", "name": "play_3_dialog3.png" },
+      { "type": "eval", "code": "(()=>{for(let i=0;i<12;i++){ RS.App.modals.length=0;} RST.g().dialog=null; return 'closed';})()" },
+      { "type": "key", "key": "KeyM", "ms": 60 },
+      { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "play_4_map.png" },
+      { "type": "key", "key": "Escape", "ms": 60 },
+      { "type": "eval", "code": "(()=>{const g=RST.g(); const e=g.level.entities.find(e=>e.faction==='enemy'&&e.type==='slime'); if(!e) return 'no slime'; RST.tp(Math.floor(e.x/16), Math.floor(e.y/16)+3); return 'near slime '+e.x+','+e.y;})()" },
+      { "type": "wait", "ms": 1500 },
+      { "type": "shot", "name": "play_5_combat.png" },
+      { "type": "key", "key": "KeyJ", "ms": 60 }, { "type": "wait", "ms": 120 },
+      { "type": "shot", "name": "play_6_hit.png" },
+      { "type": "eval", "code": "JSON.stringify(RST.info())" }
+    ]
+  }
+]

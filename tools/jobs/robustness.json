@@ -1,0 +1,67 @@
+[
+  { "name": "save-corrupt-json", "q": "scene=title", "w": 960, "h": 540, "wait": 300,
+    "actions": [
+      { "type": "eval", "code": "localStorage.setItem('ruinseed.save.v1', '{\"currency\": 5, broken'); 'set'" },
+      { "type": "reload" }, { "type": "wait", "ms": 600 },
+      { "type": "eval", "code": "JSON.stringify({scene: RS.App.sceneName, notice: RS.Scenes.title.notice, expected: RS.T.hud.saveCorrupt, cur: RS.Save.data.currency, backup: localStorage.getItem('ruinseed.save.v1.corrupt')})" },
+      { "type": "shot", "name": "robust_corrupt_title.png" },
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 200 },
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 400 },
+      { "type": "eval", "code": "RS.App.sceneName" },
+      { "type": "eval", "code": "localStorage.getItem('ruinseed.save.v1').slice(0,80)" }
+    ]
+  },
+  { "name": "save-bad-types", "q": "scene=title", "w": 960, "h": 540, "wait": 300,
+    "actions": [
+      { "type": "eval", "code": "localStorage.setItem('ruinseed.save.v1', JSON.stringify({currency:'lots', totalEarned:-5, upgrades:{hp:99, blade:-1, speed:1.7, dodgeDist:'x', potion:null}, settings:{music:'yes', musicVol:7, sfxVol:-2}, cheats:{godMode:'on'}, best:{time:'fast'}, stats:{runs:-3, wins:2.5}, lastSeed:-77, attempts:{abc:5, '12':3, '7':'x'}, run:{seed:42, attempt:1, sigils:[0,5,'x',0,2], hp:-5, potions:99, explored:'1zz.0q.garbage', opened:[1,'c_1'], checkpoint:{}}})); 'set'" },
+      { "type": "reload" }, { "type": "wait", "ms": 600 },
+      { "type": "eval", "code": "JSON.stringify(RS.Save.data)" },
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 200 },
+      { "type": "shot", "name": "robust_badtypes_title.png" },
+      { "type": "press", "key": "Enter" },
+      { "type": "waitFor", "code": "RS.App.sceneName === 'play' && RS.currentGame", "timeout": 60000 },
+      { "type": "wait", "ms": 800 },
+      { "type": "eval", "code": "(()=>{const g=RS.currentGame; return JSON.stringify({seed:g.seed, sigils:g.run.sigils, hp:g.player.hp, potions:g.run.potions, god:g.godMode, time:g.runTime.toFixed(1)});})()" },
+      { "type": "shot", "name": "robust_badtypes_play.png" }
+    ]
+  },
+  { "name": "storage-blocked", "q": "scene=title", "w": 960, "h": 540, "wait": 300,
+    "init": "Storage.prototype.getItem = function(){ throw new DOMException('blocked','SecurityError'); }; Storage.prototype.setItem = function(){ throw new DOMException('blocked','SecurityError'); };",
+    "actions": [
+      { "type": "eval", "code": "JSON.stringify({avail: RS.Save.available, notice: RS.Scenes.title.notice})" },
+      { "type": "shot", "name": "robust_blocked_title.png" },
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 200 },
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 400 },
+      { "type": "eval", "code": "RS.App.sceneName" },
+      { "type": "eval", "code": "(()=>{RS.Scenes.camp.depart(4242); return RS.App.sceneName;})()" },
+      { "type": "waitFor", "code": "RS.App.sceneName === 'play' && RS.currentGame", "timeout": 60000 },
+      { "type": "wait", "ms": 600 },
+      { "type": "eval", "code": "(()=>{const g=RS.currentGame; g.saveRun(); return 'play ok seed '+g.seed;})()" },
+      { "type": "wait", "ms": 600 },
+      { "type": "shot", "name": "robust_blocked_play.png" }
+    ]
+  },
+  { "name": "audio-toggles", "q": "scene=title", "w": 960, "h": 540, "wait": 300,
+    "actions": [
+      { "type": "press", "key": "Enter" }, { "type": "wait", "ms": 400 },
+      { "type": "eval", "code": "(()=>{const A=RS.Audio; const an=A.ctx.createAnalyser(); an.fftSize=2048; A.master.connect(an); window._rms=()=>{const d=new Float32Array(an.fftSize); an.getFloatTimeDomainData(d); let s=0; for(const v of d) s+=v*v; return Math.sqrt(s/d.length);}; window._peak=async(ms)=>{let m=0; const t0=performance.now(); while(performance.now()-t0<ms){await new Promise(r=>setTimeout(r,20)); m=Math.max(m,_rms());} return m;}; const S=RS.Save.data.settings; S.sfx=false; S.ambient=false; S.music=true; A.applySettings(); return JSON.stringify({unlocked:A.unlocked, state:A.ctx.state, track:A.curName});})()" },
+      { "type": "wait", "ms": 1500 },
+      { "type": "eval", "code": "(async()=>'music only rms='+(await _peak(800)).toFixed(4))()" },
+      { "type": "eval", "code": "(()=>{const S=RS.Save.data.settings; S.music=false; RS.Audio.applySettings(); return 'music off';})()" },
+      { "type": "wait", "ms": 4000 },
+      { "type": "eval", "code": "(async()=>'all off rms='+(await _peak(800)).toFixed(5))()" },
+      { "type": "eval", "code": "(async()=>{const S=RS.Save.data.settings; S.sfx=true; RS.Audio.applySettings(); await new Promise(r=>setTimeout(r,200)); RS.Audio.sfx('coins'); return 'sfx with music off rms='+(await _peak(400)).toFixed(4);})()" },
+      { "type": "eval", "code": "(()=>{RS.App.pushModal(new RS.UI.SettingsModal(null)); return RS.App.topModal().audioStatus();})()" },
+      { "type": "wait", "ms": 300 },
+      { "type": "shot", "name": "robust_audio_settings.png" },
+      { "type": "eval", "code": "(()=>{const S=RS.Save.data.settings; S.music=true; S.ambient=true; RS.Audio.applySettings(); return RS.App.topModal().audioStatus();})()" }
+    ]
+  },
+  { "name": "audio-before-input", "q": "scene=title", "w": 960, "h": 540, "wait": 300,
+    "actions": [
+      { "type": "eval", "code": "(()=>{RS.App.pushModal(new RS.UI.SettingsModal(null)); return JSON.stringify({unlocked: RS.Audio.unlocked, status: RS.App.topModal().audioStatus()});})()" },
+      { "type": "wait", "ms": 200 },
+      { "type": "shot", "name": "robust_audio_wait.png" }
+    ]
+  }
+]
